@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>OSOD 6G 可视化展示</title>
+</head>
+<body>
+  <header class="header">
+    <div class="left">
+      <img src="image/logo.png" alt="Xidian Logo" class="logo">
+      <a href="https://www.xidian.edu.cn/" target="_blank">Xidian University</a>
+    </div>
+    <div class="right">
+      <span class="gradient-text">OSOD 6G: Omni-Scenario Knowledge Base</span>
+    </div>
+  </header>
+
+  <div class="button-container">
+    <div class="tab-wrapper">
+      <button class="tab-button active" data-tab="tab1">Background Information</button>
+      <button class="tab-button" data-tab="tab2">Data Presentation</button>
+      <button class="tab-button" data-tab="tab3">Results Visualization</button>
+      <button class="tab-button" data-tab="tab4">Dataset Download</button>
+      <button class="tab-button" data-tab="tab5">Author Introduction</button>
+    </div>
+  </div>
+
+  <main class="content-wrapper">
+    <div class="tab-content active" id="tab1">
+      <div class="tech-card">
+        <div class="tech-card-inner">
+          <div class="card-front">
+            <img src="image/img1.jpg" alt="背景图">
+            <div class="text-box">
+              <h3>Scene requirement analysis</h3>
+              <p>With the advent of 6G networks, global communication systems face unprecedented challenges and opportunities, particularly in the realms of on-demand multi-scenario services and the construction of intelligent networks. Grounded in the concept of a Channel Knowledge Map (CKM), the paper establishes the 6G omni-scenario knowledge base (OSOD 6G) towards the comprehensive physical context of space-air-ground sea environments. Centered on the pivotal channel parameters between transceivers, the OSOD 6G elucidates the intrinsic relationships among subject, environment, requirement, and knowledge through an ontological framework.</p>
+              <span class="hover-hint">Hover the mouse to view in-depth analysis ➔</span>
+            </div>
+          </div>
+          <div class="card-back">
+            <div class="text-box highlight">
+              <h3>Technical details and model architecture</h3>
+              <p>Specifically, we firstly construct ontology-based framework for seven distinct scenarios, which includes urban areas at various stages of development, plain, mountain, and ocean. Secondly, we deploy a diverse array of signal sources including omnidirectional base stations, directional base stations, and satellite in accordance with urban developmental stages. Thirdly, densely positioning receivers both aerially and terrestrially and employing ray tracing to extract channel knowledge. Subsequently, the data is filtered, integrated, and organized according to a predefined data schema. This process enables the construction of OSOD 6G that supports scalability, rapid indexing, and targeted analysis. Furthermore, we conducted visualization and simulation verification of OSOD 6G from multiple dimensions of omni-scenario knowledge inference,includin diverse signal transmitters, urban typologies, receiver altitudes, and CKM fitting performance.
+              </p>
+            </div>
+            <img src="image/img7.jpg" alt="架构图">
+          </div>
+        </div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-inner">
+          <div class="card-front">
+            <img src="image/img2.jpg" alt="背景图">
+            <div class="text-box">
+              <h3>Scene requirement analysis</h3>
+              <p>We present the OSOD 6G ontology structure in a graphical form for intuitive representation. The central node, OSOD 6G, encompasses five primary entities: subject, environment, requirement, and knowledge. Subject includes Type of subject and Location of subject. Environment encompasses Geographic environment, Altitude space,and Type of urban. Requirement covers Type of resource and Requirement indicators. Knowledge incorporates parameters such as channel capacity, received power, noise power, signal-to-noise ratio, time of arrival, and path loss.</p>
+              <span class="hover-hint">Hover the mouse to view in-depth analysis ➔</span>
+            </div>
+          </div>
+          <div class="card-back">
+            <div class="text-box highlight">
+              <h3>Model architecture</h3>
+              <p> we employ ray tracing to infer the channel capacity of the scenario, there by constructing the CKM.The CKM for a single base station, a single urban area, and a single-layer receiver is depicted from 3D and 2D projections, respectively.
+              </p>
+            </div>
+            <img src="image/img8.jpg" alt="架构图">
+          </div>
+        </div>
+      </div>
+
+      <div class="citation-card">
+        <div class="citation-title">Citation</div>
+        <p class="citation-text">
+          SHA Z, LI C, YUE W, YANG X, et al. Construction of 6G omni-scenario knowledge base for on-demand service using channel knowledge map[C]// AAAI 2026 Workshop on Machine Learning for Wireless Communication and Networks. 2026.
+        </p>
+      </div>
+    </div>
+
+
+    <div class="tab-content" id="tab2">
+      <div class="table-container">
+        <table id="data-table"></table>
+      </div>
+      <div id="pagination"></div>
+    </div>
+
+<div class="tab-content" id="tab3">
+      
+      <div class="visual-group-card">
+        <div class="group-intro">
+          <h3>Group 1: Spatial distribution map of OSOD 6G channel capacity for ground base stations in different scenarios</h3>
+          <p>When the signal transmitting end is the <strong style="color: rgb(22, 138, 185);">ground base station</strong>, the visualized results of the OSOD 6G channel capacity distribution under different city types and altitude levels are as follows.</p>
+        </div>
+        <div class="image-grid-4">
+          <div class="grid-item">
+            <img src="image/A.png" alt="结果1">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result A</h4></div>
+              <div class="info-body"><p>This figure illustrates the channel capacity distribution in suburban environments at altitudes of 2m, 150m, and 300m.</p></div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="image/B.png" alt="结果2">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result B</h4></div>
+              <div class="info-body"><p>This figure illustrates the channel capacity distribution in urban environments at altitudes of 2m, 150m, and 300m.</p></div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="image/C.png" alt="结果3">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result C</h4></div>
+              <div class="info-body"><p>This figure illustrates the channel capacity distribution in dense urban environments at altitudes of 2m, 150m, and 300m.</p></div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="image/D.png" alt="结果4">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result D</h4></div>
+              <div class="info-body"><p>This figure illustrates the channel capacity distribution in urban high-rise environments at altitudes of 2m, 150m, and 300m.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-group-card">
+        <div class="group-intro">
+          <h3>Group 2: Spatial distribution map of OSOD 6G channel capacity for high-altitude platforms in different scenarios</h3>
+          <p>When the signal transmission end is an <strong style="color: rgb(22, 138, 185);">high-altitude platforms</strong>, the visualized results of the OSOD 6G channel capacity distribution under different city types and altitude levels are as follows.</p>
+        </div>
+        <div class="image-grid-4">
+          <div class="grid-item">
+            <img src="image/E.png" alt="结果5">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result E</h4></div>
+              <div class="info-body"><p>This figure illustrates the channel capacity distribution in suburban environments at altitudes of 2m, 150m, and 300m.</p></div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="image/F.png" alt="结果6">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result F</h4></div>
+              <div class="info-body"><p>This figure illustrates the channel capacity distribution in urban environments at altitudes of 2m, 150m, and 300m.</p></div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="image/G.png" alt="结果7">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result G</h4></div>
+              <div class="info-body"><p>This figure illustrates the channel capacity distribution in dense urban environments at altitudes of 2m, 150m, and 300m.</p></div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="image/H.png" alt="结果8">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result H</h4></div>
+              <div class="info-body"><p>This figure illustrates the channel capacity distribution in urban high-rise environments at altitudes of 2m, 150m, and 300m.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-group-card highlight-card">
+        <div class="group-intro">
+          <h3>Group 3: Spatial distribution map of satellite OSOD 6G channel capacity at different altitudes</h3>
+          <p>When the signal transmitting end is the <strong style="color: rgb(22, 138, 185);">satellite</strong>, the visualized results of the OSOD 6G channel capacity distribution under different city types and altitude levels are as follows.</p>
+
+        </div>
+        <div class="image-grid-1">
+          <div class="grid-item large-item">
+            <img src="image/I.png" alt="结果9">
+            <div class="info-panel">
+              <div class="info-header"><h4 class="short-title"><span>■</span> Visualized result I</h4></div>
+              <div class="info-body"><p>It shows the channel capacity of the entire scene area at 2 meters, 150 meters, and 300 meters.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="tab-content" id="tab4">
+      <div class="download-card">
+        <h3>OSOD 6G Partial Dataset</h3>
+        <p>It includes complete calculation data such as environmental parameters, base station coordinates and channel capacity.</p>
+        <button id="download-button" class="tech-btn">Obtain the CSV dataset</button>
+      </div>
+    </div>
+
+
+
+    <!-- Tab 5: 作者/团队介绍 -->
+    <div class="tab-content" id="tab5">
+      <div class="author-container">
+
+        
+        <!-- 作者 1 -->
+        <div class="author-card">
+          <div class="img-wrapper">
+            <img src="image/author1.jpg" alt="沙子凡">
+          </div>
+          <div class="author-info">
+            <h3>Zifan Sha</h3>
+            <h3>沙子凡</h3>
+            <p class="role">Project leader and technical expert</p>
+            <a href="mailto:zfsha@stu.xidian.edu.cn" class="email-btn">✉️ Contact the author: zfsha@stu.xidian.edu.cn</a>
+            <p class="desc">Zifan Sha (Student Member, IEEE) received the B.E. degree in electronic information science and technology from Inner Mongolia University, China, in 2016. He is currently pursuing the Ph.D. degree in information and communication engineering at Xidian University, China. In 2025, he was a visiting Ph.D. student with the 5G/6G Innovation Centre, University of Surrey, U.K. His current research interests include 6G networks, air-ground integrated transportation, and AI for communications.</p>
+          </div>
+        </div>
+
+        
+        <!-- 作者 2 -->
+        <div class="author-card">
+          <!-- 统一使用占位图 -->
+          <div class="img-wrapper">
+            <img src="image/author2.jpg" alt="杨晓健">
+          </div>
+          <div class="author-info">
+            <h3>Xiaojian Yang</h3>
+            <h3>杨晓健</h3>
+            <p class="role">OSOD 6G Channel Data Provision</p>
+            <a href="mailto:yxj@stu.xidian.edu.cn" class="email-btn">✉️ Contact the author: yxj@stu.xidian.edu.cn</a>
+            <p class="desc">Xiaojian Yang received the B.E. degree in Communication Engineering from China University of Petroleum in 2023. He is currently pursuing the M.S. degree in Transportation Engineering at Xidian University, China. His research interests include Channel Knowledge Map, vehicular networks, and resource allocation.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

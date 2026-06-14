@@ -1,0 +1,596 @@
+/* 基础与变量重置 */
+:root {
+  --primary-color: #1ec0c5;
+  --bg-color: #f4f7f9;
+  --text-main: #2c3e50;
+  --card-bg: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+/* 顶部导航：轻量悬浮感 */
+/* 核心导航栏容器：引入毛玻璃效果与吸顶布局 */
+.header {
+  position: sticky; 
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 48px;
+  
+  /* 核心修改：加入从近乎纯白到微弱科技青色的渐变底色 */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(30, 192, 197, 0.12) 100%);
+  
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  /* 稍微加深了底部边框的颜色，使其更有边界感 */
+  border-bottom: 1px solid rgba(30, 192, 197, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.header .left {
+  display: flex;
+  align-items: center;
+
+  gap: 18px; /* 稍微拉开一点间距，让呼吸感更强 */
+}
+
+/* Logo 微交互：增加轻量级的鼠标悬浮放大 */
+.header .left img {
+  height: 48px;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.header .left img:hover {
+  transform: scale(1.05);
+}
+
+/* 链接文本：增加动态下划线效果 */
+.header .left a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.header .left a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(45deg, #1ec0c5, #007bb5);
+  transition: width 0.3s ease;
+}
+
+.header .left a:hover {
+  color: #1ec0c5;
+}
+
+.header .left a:hover::after {
+  width: 100%;
+}
+
+.header .right {
+  font-weight: 800; /* 稍微加粗，提升右侧标题的分量感 */
+  font-size: 30px;
+  letter-spacing: 0.5px;
+}
+
+/* 渐变文本：增加光泽流动动画 */
+.gradient-text {
+  background: linear-gradient(120deg, #1ec0c5, #007bb5, #1ec0c5);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 6s linear infinite; /* 缓慢流动的科技感 */
+}
+
+@keyframes gradientFlow {
+  to { background-position: 200% center; }
+}
+
+/* 标签切换栏：现代胶囊设计 */
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+.tab-wrapper {
+  background: #e9ecef;
+  border-radius: 50px;
+  padding: 5px;
+  display: inline-flex;
+}
+
+.tab-button {
+  background: transparent;
+  border: none;
+  color: #6c757d;
+  padding: 12px 50px;
+  font-size: 24px;
+  font-weight: 900;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  color: var(--primary-color);
+}
+
+.tab-button.active {
+  background: var(--card-bg);
+  color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 内容区域 */
+.content-wrapper {
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.1s ease-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 核心交互：滑动抽屉式卡片 --- */
+.tech-card {
+  width: 100%;
+  height: 460px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden; /* 隐藏超出部分 */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  position: relative;
+  margin-bottom: 20px; /* 新增这行：让两张卡片之间拉开 20px 的空隙 */
+  margin-top: 20px;
+}
+
+.tech-card-inner {
+  display: flex;
+  width: 200%; /* 包含正反两面的宽度 */
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); /* 丝滑过渡曲线 */
+}
+
+.tech-card:hover .tech-card-inner {
+  transform: translateX(-50%); /* 鼠标悬停，整体左移一半 */
+}
+
+.card-front, .card-back {
+  width: 50%; /* 占据 200% 中的一半，即实际卡片宽度 */
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  box-sizing: border-box;
+  gap: 30px;
+}
+
+.card-back {
+  background: linear-gradient(135deg, #f8fcfc 0%, #e0f7f8 100%);
+}
+
+.tech-card img {
+  width: 35%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.text-box {
+  flex: 1;
+}
+
+.text-box h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 32px;
+}
+
+.text-box p {
+  line-height: 1.6;
+  font-size: 22px;
+  text-align: justify;
+  color: #555;
+}
+
+.hover-hint {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 20px;
+  color: #aaa;
+  font-style: italic;
+}
+
+
+/* =========================================
+   文献引用框样式
+   ========================================= */
+.citation-card {
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px 35px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04); /* 比上面的卡片阴影更轻，凸显它是附属信息 */
+  margin-bottom: 30px;
+  border-left: 6px solid var(--primary-color); /* 左侧青色强调线，学术风格 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.citation-title {
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.citation-text {
+  margin: 0;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+  font-family: 'Times New Roman', Times, serif; /* 使用衬线字体，增加学术厚重感 */
+}
+
+
+
+/* Tab 2 表格优化 */
+.table-container {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+th {
+  background-color: rgba(30, 192, 197, 0.1);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+tr:hover td {
+  background-color: #fcfcfc;
+  color: var(--primary-color);
+}
+
+/* 分页按钮 */
+#pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#pagination button {
+  background: var(--card-bg);
+  border: 1px solid #e1e1e1;
+  color: var(--text-main);
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#pagination button:hover:not([disabled]) {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+#pagination button[disabled] {
+  background: var(--primary-color);
+  color: white;
+  opacity: 0.8;
+  cursor: default;
+}
+/* =========================================
+   Tab 3: 结果可视化分组卡片样式
+   ========================================= */
+
+/* 外层分组大框 */
+.visual-group-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.04); /* 柔和的高级感阴影 */
+  border: 1px solid rgba(30, 192, 197, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.visual-group-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(30, 192, 197, 0.08);
+}
+
+/* 最后一个强调卡片的特殊背景 */
+.visual-group-card.highlight-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fbfc 100%);
+  border-color: rgba(30, 192, 197, 0.3);
+}
+
+/* 分组独立介绍文字 */
+.group-intro {
+  margin-bottom: 25px;
+  border-left: 5px solid var(--primary-color);
+  padding-left: 24px;
+}
+
+.group-intro h3 {
+  margin: 0 0 10px 0;
+  color: var(--text-main);
+  font-size: 24px;
+}
+
+.group-intro p {
+  margin: 0;
+  color: #666;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+/* 4张图的 2x2 网格布局 */
+.image-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+/* 单张大图的居中布局 */
+.image-grid-1 {
+  display: flex;
+  justify-content: center;
+}
+
+.image-grid-1 .grid-item.large-item {
+  width: 85%; /* 占据父容器的85%，实现明显放大效果 */
+  max-width: 900px;
+}
+
+.grid-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06); /* 阴影也调柔和了 */
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.grid-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.grid-item:hover img {
+  transform: scale(1.03); /* 降低了图片放大比例，减少晕眩感 */
+}
+
+/* 底部解释面板：浅色毛玻璃 */
+.info-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.92); /* 极浅色底色，去掉了艳丽的青色 */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(30, 192, 197, 0.15); /* 仅顶部保留一条极细的科技青边框作点缀 */
+  
+  /* 核心逻辑：初始状态将面板向下推，精确露出 44px 的头部高度 */
+  transform: translateY(calc(100% - 44px));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 标题栏区域：常驻显示 */
+.info-header {
+  height: 44px; /* 固定高度，与 calc() 呼应 */
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.short-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.short-title span {
+  color: var(--primary-color);
+  margin-right: 6px;
+  font-size: 24px;
+}
+
+/* 详细解释区域：默认隐藏 */
+.info-body {
+  padding: 0 16px 16px 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.info-body p {
+  margin: 0;
+  font-size: 20px;
+  color: #555;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* === 鼠标悬停触发的联动动画 === */
+.grid-item:hover .info-panel {
+  transform: translateY(0); /* 整个面板弹上来 */
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.03);
+}
+
+.grid-item:hover .info-body {
+  opacity: 1; /* 长段文字浮现 */
+  transition-delay: 0.15s; /* 稍微延迟0.15秒，等面板升起后再显示文字，视觉更丝滑 */
+}
+
+
+/* Tab 4 下载区 */
+.download-card {
+  text-align: center;
+  background: var(--card-bg);
+  padding: 50px;
+  border-radius: 16px;
+  font-size: 26px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.tech-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 15px 35px;
+  font-size: 26px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tech-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 192, 197, 0.4);
+}
+
+/* =========================================
+   Tab 5: 作者介绍卡片样式
+   ========================================= */
+   .author-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .author-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    width: 420px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 带有一点弹性效果的悬浮 */
+  }
+  
+  .author-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 40px rgba(30, 192, 197, 0.15);
+  }
+  
+  /* 图片区域：增加一个渐变背景底色，防止透明PNG不好看 */
+  .img-wrapper {
+    height: 460px;
+    width: 100%;
+    background: linear-gradient(135deg, #e0f7f8 0%, #f4f7f9 100%);
+    overflow: hidden;
+  }
+  
+  .author-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .author-card:hover img {
+    transform: scale(1.05); /* 鼠标放上去图片轻微放大 */
+  }
+  
+  .author-info {
+    padding: 30px 25px;
+  }
+  
+  .author-info h3 {
+    margin: 0 0 5px 0;
+    color: var(--text-main);
+    font-size: 24px;
+  }
+  
+  .author-info .role {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* 邮箱按钮 */
+  .email-btn {
+    display: inline-block;
+    background: rgba(30, 192, 197, 0.1);
+    color: var(--primary-color);
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .email-btn:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+  
+  .author-info .desc {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.7;
+    text-align: justify;
+    margin: 0;
+  }
